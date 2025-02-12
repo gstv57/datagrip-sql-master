@@ -1,59 +1,70 @@
-create table `datagrip-study`.roles
-(
-    id   int unsigned auto_increment
-        primary key,
-    name varchar(50) not null,
-    constraint name
-        unique (name)
-);
+# CREATE TABLE IF NOT EXISTS `users`
+# (
+#     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+#     `first_name` VARCHAR(50) NOT NULL,
+#     `last_name` VARCHAR(50) NULL,
+#     `email` VARCHAR(255),
+#     `password` VARCHAR(255) NOT NULL,
+#     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+#     `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+#     UNIQUE(email)
+# );
+#
+# CREATE TABLE IF NOT EXISTS `roles`
+# (
+#     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+#     `name` VARCHAR(50) NOT NULL,
+#     UNIQUE (name)
+# );
+#
+# CREATE TABLE IF NOT EXISTS `user_roles`
+# (
+#     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+#     `user_id` INT UNSIGNED NOT NULL,
+#     `role_id` INT UNSIGNED NOT NULL,
+#     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+#     `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+#     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+#     FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
+# );
+#
+# CREATE TABLE IF NOT EXISTS `profiles`
+# (
+#     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+#     `bio` TEXT NULL,
+#     `user_id` INT UNSIGNED NULL,
+#     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+# );
 
-create table `datagrip-study`.users
-(
-    id         int unsigned auto_increment
-        primary key,
-    first_name varchar(50)                        not null,
-    last_name  varchar(50)                        null,
-    email      varchar(255)                       null,
-    password   varchar(255)                       not null,
-    created_at datetime default CURRENT_TIMESTAMP not null,
-    updated_at datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
-    constraint email
-        unique (email)
-);
 
-create table `datagrip-study`.profiles
-(
-    id      int unsigned auto_increment
-        primary key,
-    bio     text         null,
-    user_id int unsigned null,
-    constraint profiles_ibfk_1
-        foreign key (user_id) references `datagrip-study`.users (id)
-            on delete cascade
-);
+#DESCRIBE users;
 
-create index user_id
-    on `datagrip-study`.profiles (user_id);
+# INSERT INTO users
+# (first_name, last_name, email, password) VALUES
+# ("Gustavo", "de Moraes", "gustavoo.1@gmail.com", "password"),
+# ("Gustavo", "de Moraes", "gustavoo.2@gmail.com", "password"),
+# ("Gustavo", "de Moraes", "gustavoo.3@gmail.com", "password");
+#
 
-create table `datagrip-study`.user_roles
-(
-    id         int unsigned auto_increment
-        primary key,
-    user_id    int unsigned                       not null,
-    role_id    int unsigned                       not null,
-    created_at datetime default CURRENT_TIMESTAMP not null,
-    updated_at datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
-    constraint user_roles_ibfk_1
-        foreign key (user_id) references `datagrip-study`.users (id)
-            on delete cascade,
-    constraint user_roles_ibfk_2
-        foreign key (role_id) references `datagrip-study`.roles (id)
-            on delete cascade
-);
+# SELECT u.first_name u_fistname, u.last_name u_lastname, u.email u_email
+# FROM users as u;
 
-create index role_id
-    on `datagrip-study`.user_roles (role_id);
+# SELECT *
+# FROM users
+# WHERE created_at >= '2025-02-11 23:26:30'
+# AND email =  'gustavoo.sec1@gmail.com';
 
-create index user_id
-    on `datagrip-study`.user_roles (user_id);
+# SELECT *
+# FROM users
+# WHERE created_at
+# BETWEEN '2025-02-11 21:17:00'
+# AND '2025-02-11 21:23:00'
+# AND id
+# BETWEEN 18
+# AND 20;
+
+SELECT *
+FROM users
+ORDER BY first_name
+LIMIT 1;
 
