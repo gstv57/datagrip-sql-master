@@ -68,7 +68,10 @@
 # ORDER BY first_name
 # LIMIT 2 OFFSET 1;
 
-INSERT INTO profiles
-    (bio, user_id)
-SELECT CONCAT('bio de ', first_name), id
-FROM users;
+# INSERT INTO profiles
+#     (bio, user_id)
+# SELECT CONCAT('bio de ', first_name), id
+# FROM users;
+
+DELETE FROM users WHERE id = 1;
+
