@@ -1,0 +1,59 @@
+create table `datagrip-study`.roles
+(
+    id   int unsigned auto_increment
+        primary key,
+    name varchar(50) not null,
+    constraint name
+        unique (name)
+);
+
+create table `datagrip-study`.users
+(
+    id         int unsigned auto_increment
+        primary key,
+    first_name varchar(50)                        not null,
+    last_name  varchar(50)                        null,
+    email      varchar(255)                       null,
+    password   varchar(255)                       not null,
+    created_at datetime default CURRENT_TIMESTAMP not null,
+    updated_at datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
+    constraint email
+        unique (email)
+);
+
+create table `datagrip-study`.profiles
+(
+    id      int unsigned auto_increment
+        primary key,
+    bio     text         null,
+    user_id int unsigned null,
+    constraint profiles_ibfk_1
+        foreign key (user_id) references `datagrip-study`.users (id)
+            on delete cascade
+);
+
+create index user_id
+    on `datagrip-study`.profiles (user_id);
+
+create table `datagrip-study`.user_roles
+(
+    id         int unsigned auto_increment
+        primary key,
+    user_id    int unsigned                       not null,
+    role_id    int unsigned                       not null,
+    created_at datetime default CURRENT_TIMESTAMP not null,
+    updated_at datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
+    constraint user_roles_ibfk_1
+        foreign key (user_id) references `datagrip-study`.users (id)
+            on delete cascade,
+    constraint user_roles_ibfk_2
+        foreign key (role_id) references `datagrip-study`.roles (id)
+            on delete cascade
+);
+
+create index role_id
+    on `datagrip-study`.user_roles (role_id);
+
+create index user_id
+    on `datagrip-study`.user_roles (user_id);
+
