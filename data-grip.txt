@@ -85,7 +85,22 @@
 # FROM users
 # WHERE id = 5;
 
+# SELECT u.id as uid, p.id as pid,
+# u.first_name, u.last_name, p.bio
+# FROM users as u, profiles as p
+# WHERE u.id = p.user_id;
+
+#INNER JOIN IMPLICITO
+# SELECT u.id as uid, p.id as pid,
+# u.first_name, u.last_name, p.bio
+# FROM users as u, profiles as p
+# WHERE u.id = p.user_id
+# LIMIT 5;
+
+#INNER JOIN EXPLICITO
 SELECT u.id as uid, p.id as pid,
 u.first_name, u.last_name, p.bio
-FROM users as u, profiles as p
-WHERE u.id = p.user_id;
+FROM users as u
+INNER JOIN profiles p
+ON u.id = p.user_id
+LIMIT 5;
