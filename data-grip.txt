@@ -73,5 +73,14 @@
 # SELECT CONCAT('bio de ', first_name), id
 # FROM users;
 
-DELETE FROM users WHERE id = 1;
+#DELETE FROM users WHERE id = 1;
 
+UPDATE users
+SET first_name = 'Silva',
+    last_name = 'Maria'
+WHERE id = 5;
+
+SELECT
+    *
+FROM users
+WHERE id = 5;
