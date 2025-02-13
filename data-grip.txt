@@ -1,4 +1,4 @@
-# CREATE TABLE IF NOT EXISTS `users`
+k# CREATE TABLE IF NOT EXISTS `users`
 # (
 #     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 #     `first_name` VARCHAR(50) NOT NULL,
@@ -98,9 +98,18 @@
 # LIMIT 5;
 
 #INNER JOIN EXPLICITO
+# SELECT u.id as uid, p.id as pid,
+# u.first_name, u.last_name, p.bio
+# FROM users as u
+# INNER JOIN profiles p
+# ON u.id = p.user_id
+# LIMIT 5;
+
+#LEFT JOIN EXPLICITO
 SELECT u.id as uid, p.id as pid,
 u.first_name, u.last_name, p.bio
 FROM users as u
-INNER JOIN profiles p
+LEFT JOIN profiles p
 ON u.id = p.user_id
 LIMIT 5;
+
