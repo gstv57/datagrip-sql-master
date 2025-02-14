@@ -114,9 +114,12 @@
 # LIMIT 5;
 
 # RIGHT JOIN EXPLICITO
-SELECT u.id as uid, p.id as pid,
-u.first_name, u.last_name, p.bio
-FROM users as u
-RIGHT JOIN profiles p
-ON u.id = p.user_id
-LIMIT 5;
+# SELECT u.id as uid, p.id as pid,
+# u.first_name, u.last_name, p.bio
+# FROM users as u
+# RIGHT JOIN profiles p
+# ON u.id = p.user_id
+# LIMIT 5;
+
+ALTER TABLE users
+    add salary DECIMAL(15, 2) NULL;
