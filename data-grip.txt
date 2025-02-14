@@ -124,5 +124,34 @@
 # ALTER TABLE users
 #     add salary DECIMAL(15, 2) NULL;
 
-UPDATE users
-SET salary = round(rand() * 10000, 2);
+# UPDATE users
+# SET salary = round(rand() * 10000, 2);
+
+# SELECT salary
+# FROM users
+# WHERE salary
+# BETWEEN 1000 AND 2000
+# ORDER BY salary DESC
+
+# INSERT INTO roles (name)
+# VALUES
+#     ('POST'), ('PUT'), ('DELETE'), ('GET')
+
+# INSERT INTO user_roles (user_id, role_id) VALUES (2,4)
+
+#SELECT ROLES RANDOM
+SELECT id,
+       (SELECT id FROM roles ORDER BY rand() LIMIT 1)
+FROM users;
+
+#INSERT TO USER_ROLES WITH ROLE_ID GENERATE RANDOM ID`s
+INSERT INTO user_roles(user_id, role_id)
+SELECT id,
+       (SELECT id FROM roles ORDER BY rand() LIMIT 1)
+FROM users;
+
+#SAME QUERY ABOVE, BUT INSERT TO USER_ROLES WITH ROLE_ID GENERATE RANDOM ID`s IGNORING ERRORS
+INSERT IGNORE INTO user_roles(user_id, role_id)
+SELECT id,
+       (SELECT id FROM roles ORDER BY rand() LIMIT 1)
+FROM users;
