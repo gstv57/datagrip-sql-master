@@ -121,5 +121,8 @@
 # ON u.id = p.user_id
 # LIMIT 5;
 
-ALTER TABLE users
-    add salary DECIMAL(15, 2) NULL;
+# ALTER TABLE users
+#     add salary DECIMAL(15, 2) NULL;
+
+UPDATE users
+SET salary = round(rand() * 10000, 2);
