@@ -178,20 +178,31 @@
 # where u.first_name = 'Sandra'
 
 # SELECT USER AND PROFILES, PRIORITY LEFT JOIN (USER ALWAYS EXISTS, PROFILES OPTIONAL)
-select u.first_name, p.bio from users u
+# select u.first_name, p.bio from users u
+# left join profiles as p
+# ON u.id = p.user_id
+# where u.first_name = 'Gustavo';
+#
+# # DELETE BOTH TABLES (Profile p , Users u )
+# delete p, u from users as u
+# join profiles as p
+# on u.id = p.user_id
+# where u.first_name = 'Sandra';
+#
+#
+# # DELETE PROFILE TABLE
+# delete p from users as u
+# join profiles as p
+# on u.id = p.user_id
+# where u.first_name = 'Gustavo'
+
+SELECT first_name, COUNT(id) as total
+FROM users
+GROUP BY first_name
+ORDER BY  total DESC;
+
+select u.first_name, count(u.id) as total from users u
 left join profiles as p
 ON u.id = p.user_id
-where u.first_name = 'Gustavo';
-
-# DELETE BOTH TABLES (Profile p , Users u )
-delete p, u from users as u
-join profiles as p
-on u.id = p.user_id
-where u.first_name = 'Sandra';
-
-
-# DELETE PROFILE TABLE
-delete p from users as u
-join profiles as p
-on u.id = p.user_id
-where u.first_name = 'Gustavo'
+GROUP BY first_name
+ORDER BY total DESC
