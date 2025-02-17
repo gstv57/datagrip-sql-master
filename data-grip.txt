@@ -196,13 +196,22 @@
 # on u.id = p.user_id
 # where u.first_name = 'Gustavo'
 
-SELECT first_name, COUNT(id) as total
-FROM users
-GROUP BY first_name
-ORDER BY  total DESC;
+# SELECT first_name, COUNT(id) as total
+# FROM users
+# GROUP BY first_name
+# ORDER BY  total DESC;
+#
+# select u.first_name, count(u.id) as total from users u
+# left join profiles as p
+# ON u.id = p.user_id
+# GROUP BY first_name
+# ORDER BY total DESC
 
-select u.first_name, count(u.id) as total from users u
-left join profiles as p
-ON u.id = p.user_id
-GROUP BY first_name
-ORDER BY total DESC
+SELECT
+    max(salary) as max_salary, # salary max value
+    min(salary) as min_salary, # salary min value
+    avg(salary) as avg_salary, # salary media value
+    sum(salary) as sum_salary, # salary sum value
+    count(salary) as count_salary # number of results found of count
+FROM users
+where first_name = 'Gustavo'
